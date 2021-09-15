@@ -1,0 +1,17 @@
+[package]
+name = "rust_nmap"
+version = "0.1.0"
+edition = "2018"
+authors = ["leen.zhou.cn<leen.zhou.cn@gmail.com>"]
+description = "A module for nmap xml."
+readme = "README.md"
+license = "Apache-2.0"
+homepage = "https://github.com/w01fb0ss/rust_nmap"
+repository = "https://github.com/w01fb0ss/rust_nmap"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+serde-xml-rs = "0.5.0"
