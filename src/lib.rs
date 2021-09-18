@@ -38,17 +38,37 @@ pub struct nmap_run {
     // #[serde(skip_serializing_if = "Option::is_none")]
     // pub taskprogress: Option<Vec<task_progress_info>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "prescript>script")]
-    pub prescripts: Option<Vec<script>>,
+    pub prescript: Option<prescript>,
+    // #[serde(skip_serializing_if = "Option::is_none")]
+    // #[serde(rename = "prescript>script")]
+    // pub prescripts: Option<Vec<script>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "postscript>script")]
-    pub postscripts: Option<Vec<script>>,
+    pub postscript: Option<postscript>,
+    // #[serde(skip_serializing_if = "Option::is_none")]
+    // #[serde(rename = "postscript>script")]
+    // pub postscripts: Option<Vec<script>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub host: Option<Vec<host>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub target: Option<Vec<target>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub runstats: Option<runstats>,
+}
+
+
+
+#[derive(Debug, Deserialize, PartialEq, Serialize)]
+#[allow(non_camel_case_types)]
+pub struct prescript {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub script: Option<Vec<script>>
+}
+
+#[derive(Debug, Deserialize, PartialEq, Serialize)]
+#[allow(non_camel_case_types)]
+pub struct postscript {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub script: Option<Vec<script>>
 }
 
 #[derive(Debug, Deserialize, PartialEq, Serialize)]
@@ -153,16 +173,20 @@ pub struct host {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub address: Option<Vec<address>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "hostnames>hostname")]
-    pub hostnames: Option<Vec<hostname>>,
+    pub hostnames: Option<hostnames>,
+    // #[serde(rename = "hostnames>hostname")]
+    // pub hostnames: Option<Vec<hostname>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub smurf: Option<Vec<smurf>>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "ports>port")]
-    pub ports: Option<Vec<port>>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "ports>extraports")]
-    pub extraports: Option<Vec<extraports>>,
+    pub ports: Option<ports2>,
+    // #[serde(rename = "ports>port")]
+    // pub ports: Option<Vec<port>>,
+    // #[serde(skip_serializing_if = "Option::is_none")]
+    // #[serde(rename = "ports>extraports")]
+    // pub extraports: Option<Vec<extraports>>,
+    // #[serde(rename = "ports")]
+    // pub ports2: Option<Vec<port>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub os: Option<os>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -174,12 +198,36 @@ pub struct host {
     #[serde(skip_serializing_if = "Option::is_none")]
     pub tcptssequence: Option<tcptssequence>,
     #[serde(skip_serializing_if = "Option::is_none")]
-    #[serde(rename = "hostscript>script")]
-    pub hostscripts: Option<script>,
+    pub hostscript: Option<hostscript>,
+    // #[serde(rename = "hostscript>script")]
+    // pub hostscripts: Option<script>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub trace: Option<trace>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub times: Option<times>,
+}
+
+#[derive(Debug, Deserialize, Serialize, PartialEq)]
+#[allow(non_camel_case_types)]
+pub struct hostscript {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub script: Option<script>,
+}
+
+#[derive(Debug, Deserialize, Serialize, PartialEq)]
+#[allow(non_camel_case_types)]
+pub struct hostnames {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub hostname: Option<Vec<hostname>>,
+}
+
+#[derive(Debug, Deserialize, Serialize, PartialEq)]
+#[allow(non_camel_case_types)]
+pub struct ports2 {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub port: Option<Vec<port>>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extraports: Option<Vec<extraports>>,
 }
 
 #[derive(Debug, Deserialize, Serialize, PartialEq)]
@@ -336,7 +384,7 @@ pub struct reason {
 #[allow(non_camel_case_types)]
 pub struct status {
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub status: Option<String>,
+    pub state: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub reason: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
