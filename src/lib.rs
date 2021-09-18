@@ -350,7 +350,8 @@ pub struct osclass {
     pub osfamily: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "cpe")]
-    pub cpes: Option<Vec<cpe>>,
+    pub cpe: Option<String>,
+    // pub cpes: Option<Vec<cpe>>,
 }
 
 #[derive(Debug, Deserialize, Serialize, PartialEq)]
@@ -490,7 +491,8 @@ pub struct service {
     pub servicefp: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "cpe")]
-    pub cpes: Option<Vec<cpe>>,
+    pub cpe: Option<String>,
+    // pub cpes: Option<Vec<cpe>>,
 }
 
 #[derive(Debug, Deserialize, PartialEq, Serialize)]
