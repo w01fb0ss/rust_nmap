@@ -491,7 +491,7 @@ pub struct service {
     pub servicefp: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     #[serde(rename = "cpe")]
-    pub cpe: Option<String>,
+    pub cpe: Option<Vec<cpe>>,
     // pub cpes: Option<Vec<cpe>>,
 }
 
